@@ -1,0 +1,748 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="call、apply、bind,Object.prototype.toString.call();,sort,try," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="call、apply、blind：
+定义的位置：Function.prototype 函数类的原型上,相对于每个Function的实例来说都是公有方法。
+
+call
+执行步骤：
+通过一个Function类的实例来先找到定义在Function.prototype的call
+call方法把这个函数实例中的this修改成了call的第一个参数；(ps：call从第二个参数开始都是传给调用call的函数实">
+<meta property="og:type" content="article">
+<meta property="og:title" content="call apply blind">
+<meta property="og:url" content="http://yoursite.com/2017/02/28/call-apply-bind/index.html">
+<meta property="og:site_name" content="王羽彪 |  学习前端">
+<meta property="og:description" content="call、apply、blind：
+定义的位置：Function.prototype 函数类的原型上,相对于每个Function的实例来说都是公有方法。
+
+call
+执行步骤：
+通过一个Function类的实例来先找到定义在Function.prototype的call
+call方法把这个函数实例中的this修改成了call的第一个参数；(ps：call从第二个参数开始都是传给调用call的函数实">
+<meta property="og:updated_time" content="2017-03-01T02:16:45.053Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="call apply blind">
+<meta name="twitter:description" content="call、apply、blind：
+定义的位置：Function.prototype 函数类的原型上,相对于每个Function的实例来说都是公有方法。
+
+call
+执行步骤：
+通过一个Function类的实例来先找到定义在Function.prototype的call
+call方法把这个函数实例中的this修改成了call的第一个参数；(ps：call从第二个参数开始都是传给调用call的函数实">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/28/call-apply-bind/"/>
+
+
+
+
+
+  <title>call apply blind | 王羽彪 |  学习前端</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">王羽彪 |  学习前端</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/28/call-apply-bind/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王羽彪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王羽彪 |  学习前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">call apply blind</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-28T12:08:34+08:00">
+                2017-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="call、apply、blind："><a href="#call、apply、blind：" class="headerlink" title="call、apply、blind："></a>call、apply、blind：</h3><ol>
+<li>定义的位置：Function.prototype 函数类的原型上,相对于每个Function的实例来说都是公有方法。</li>
+</ol>
+<h4 id="call"><a href="#call" class="headerlink" title="call"></a>call</h4><ol>
+<li>执行步骤：<ol>
+<li>通过一个Function类的实例来先找到定义在Function.prototype的call</li>
+<li>call方法把这个函数实例中的this修改成了call的第一个参数；(ps：call从第二个参数开始都是传给调用call的函数实例的)</li>
+<li>函数实例执行（ps:用call的时候，带执行效果）</li>
+</ol>
+</li>
+<li>事件中的this修改：<ul>
+<li>严格模式和非严格模式区别：（”use strict” 严格模式，放在script标签下的第一行）<ol>
+<li>使用call的时刻，如果把this修改成null或者undefined时，在非严格模式下会默认this为window</li>
+<li>自运行函数的this和函数执行前没有”.”，在严格模式下this都是undefined<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">    div1.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        fn.call(<span class="built_in">document</span>.body);</div><div class="line">    &#125;;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>; <span class="comment">//--&gt;body;</span></div><div class="line">    &#125;</div><div class="line"><span class="comment">////////////////////////////////////////////</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">num1,num2</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>;</div><div class="line">        <span class="keyword">return</span> num1+num2;</div><div class="line">    &#125;</div><div class="line">    sum.call(<span class="literal">undefined</span>,<span class="number">100</span>,<span class="number">200</span>); <span class="comment">//--&gt;在非严格模式下：undefined/null/等，会自动默认this值</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h4><ol>
+<li><p>和call的方法的作用基本相同，apply的第二个参数是一个数组，会把数组中的每一项作为调用apply方法的函数实例的参数。(和call一样，都是在修改完this之后直接把函数执行了)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a + b);</div><div class="line">&#125;</div><div class="line">sum.apply(<span class="literal">null</span>, [<span class="number">100</span>, <span class="number">200</span>])</div></pre></td></tr></table></figure>
+</li>
+<li><p>取数组中的最大值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,ary);<span class="comment">//将数组中的每一项作为参数的时候</span></div><div class="line"><span class="comment">////////////////////////////////////////////</span></div><div class="line"> <span class="keyword">var</span> ary = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"> <span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">"Math.max("</span> + ary.join() + <span class="string">")"</span>));</div><div class="line"><span class="comment">/////////////////////////////////////////////////////////////</span></div><div class="line"><span class="comment">//用架设的方法 ——》|</span></div><div class="line">  <span class="keyword">var</span> max = ary[<span class="number">0</span>];</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; ary.length; i++) &#123;</div><div class="line">         <span class="keyword">if</span> (ary[i] &gt; max) &#123;</div><div class="line">             max = ary[i];</div><div class="line">         &#125;</div><div class="line">     &#125; <span class="comment">//循环结束后，max为ary的最大值</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="blind-不兼容"><a href="#blind-不兼容" class="headerlink" title="blind: 不兼容"></a>blind: 不兼容</h4><ul>
+<li>call和apply都已经把函数执行结束，.blind()会返回一个在fn的基础上修改了this的新函数。使用bind的时候，只是修改this，返回值执行的时候再传参，不兼容。<h4 id="consider"><a href="#consider" class="headerlink" title="consider"></a>consider</h4></li>
+<li>fn1.call.call.call(fn2):多个call的时候，其实就是第一个参数执行;<h4 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call();"></a>Object.prototype.toString.call();</h4></li>
+<li>相当于call把toString中的this修改成了数组，而原型上方法中的this一般是实例，已经把this更改成了这个数组。那么toString就被数组偷偷的调用了一次。</li>
+<li>Object原型上的toString方法打印”[object Object]”这样的字符串。后半部分就是标记当前实例所属于的类;</li>
+<li>判断当前数据是不是{}的对象？？ –》 “[object Object]”<h4 id="for-in"><a href="#for-in" class="headerlink" title="for in"></a>for in</h4></li>
+<li>hasOwnProperty</li>
+<li>propertyIsEnumerable检查是否为可枚举属性<h4 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">   ary.sort(<span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</div><div class="line">        <span class="comment">//a，b分别就是数组中要比较的相邻两项</span></div><div class="line">        <span class="keyword">return</span> a - b; <span class="comment">//return的这个a-b的差就是是否交换位置的依据:若果为整数，则交换位置;mx</span></div><div class="line"><span class="comment">//    return a.age - b.age; 按对象中的某个属性（数字）排序</span></div><div class="line">        <span class="comment">// return a.name.localeCompare(b.name); 字符串排序</span></div><div class="line">        <span class="comment">//"a".localeCompare("b")    --》 -1 不变</span></div><div class="line">        <span class="comment">//"a".localeCompare("a")  --》0 不变</span></div><div class="line">        <span class="comment">//"a".localeCompare("b") --》1 倒排</span></div><div class="line"></div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="try"><a href="#try" class="headerlink" title="try"></a>try</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">try&#123;</div><div class="line">    先尝试执行这里的代码，如果报错那么执行catch内的代码；</div><div class="line">&#125;catch(e)&#123;</div><div class="line">    e是一个对象，e.message属性保存着报错的信息；</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/call、apply、bind/" rel="tag"># call、apply、bind</a>
+          
+            <a href="/tags/Object-prototype-toString-call/" rel="tag"># Object.prototype.toString.call();</a>
+          
+            <a href="/tags/sort/" rel="tag"># sort</a>
+          
+            <a href="/tags/try/" rel="tag"># try</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/25/运算符优先级/" rel="next" title="运算符优先级">
+                <i class="fa fa-chevron-left"></i> 运算符优先级
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/28/知识属性图整合/" rel="prev" title="知识属性图整合">
+                知识属性图整合 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="王羽彪" />
+          <p class="site-author-name" itemprop="name">王羽彪</p>
+           
+              <p class="site-description motion-element" itemprop="description">技术 | javascript | html | 前端学习</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#call、apply、blind："><span class="nav-number">1.</span> <span class="nav-text">call、apply、blind：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#call"><span class="nav-number">1.1.</span> <span class="nav-text">call</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#apply"><span class="nav-number">1.2.</span> <span class="nav-text">apply</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#blind-不兼容"><span class="nav-number">1.3.</span> <span class="nav-text">blind: 不兼容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#consider"><span class="nav-number">1.4.</span> <span class="nav-text">consider</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Object-prototype-toString-call"><span class="nav-number">1.5.</span> <span class="nav-text">Object.prototype.toString.call();</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for-in"><span class="nav-number">1.6.</span> <span class="nav-text">for in</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sort"><span class="nav-number">1.7.</span> <span class="nav-text">sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#try"><span class="nav-number">1.8.</span> <span class="nav-text">try</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王羽彪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

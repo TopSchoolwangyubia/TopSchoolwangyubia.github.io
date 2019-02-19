@@ -1,0 +1,936 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,字符串的方法,Math方法,数组,Date," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="数据类型
+基本数据类型(值类型)__
+引用数据类型：操作的是为空间地址
+{}
+[]
+RegExp正则表达式
+function
+
+
+typeof的返回值
+“boolean”
+“number”
+“string”
+“null”—“object”
+“undefined”
+“function”常用的输出和输入方式
+
+
+document.write
+innerHTML –&amp;gt;能识别标签
+innerText">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js基础">
+<meta property="og:url" content="http://yoursite.com/2017/02/19/js基础/index.html">
+<meta property="og:site_name" content="王羽彪 |  学习前端">
+<meta property="og:description" content="数据类型
+基本数据类型(值类型)__
+引用数据类型：操作的是为空间地址
+{}
+[]
+RegExp正则表达式
+function
+
+
+typeof的返回值
+“boolean”
+“number”
+“string”
+“null”—“object”
+“undefined”
+“function”常用的输出和输入方式
+
+
+document.write
+innerHTML –&amp;gt;能识别标签
+innerText">
+<meta property="og:updated_time" content="2017-02-28T11:27:14.970Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js基础">
+<meta name="twitter:description" content="数据类型
+基本数据类型(值类型)__
+引用数据类型：操作的是为空间地址
+{}
+[]
+RegExp正则表达式
+function
+
+
+typeof的返回值
+“boolean”
+“number”
+“string”
+“null”—“object”
+“undefined”
+“function”常用的输出和输入方式
+
+
+document.write
+innerHTML –&amp;gt;能识别标签
+innerText">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/19/js基础/"/>
+
+
+
+
+
+  <title>js基础 | 王羽彪 |  学习前端</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">王羽彪 |  学习前端</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/19/js基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王羽彪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王羽彪 |  学习前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-19T15:47:42+08:00">
+                2017-02-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><ol>
+<li>基本数据类型(值类型)__</li>
+<li>引用数据类型：操作的是为空间地址<ul>
+<li>{}</li>
+<li>[]</li>
+<li>RegExp正则表达式</li>
+<li>function</li>
+</ul>
+</li>
+<li>typeof的返回值<ul>
+<li>“boolean”</li>
+<li>“number”</li>
+<li>“string”</li>
+<li>“null”—“object”</li>
+<li>“undefined”</li>
+<li>“function”<h4 id="常用的输出和输入方式"><a href="#常用的输出和输入方式" class="headerlink" title="常用的输出和输入方式"></a>常用的输出和输入方式</h4></li>
+</ul>
+</li>
+<li>document.write</li>
+<li>innerHTML –&gt;能识别标签</li>
+<li>innerText –&gt;不能识别标签<h4 id="字符串的方法"><a href="#字符串的方法" class="headerlink" title="字符串的方法"></a>字符串的方法</h4></li>
+<li>字符串：用引号包起来的字符，由一个个字符组成</li>
+<li>空格也是字符</li>
+<li><p>length 字符的个数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">str.length 字符的个数</div><div class="line">str[index]</div></pre></td></tr></table></figure>
+</li>
+<li><p>字符串的方法</p>
+<ol>
+<li>charAt 在字符串中，根据索引的位置查找指定的字符 将其返回</li>
+<li>charCodeAt 在字符串，根据索引位置返回相应的字符ASCII编码；每个汉字、字母，都有一个自己的UNICODE编码</li>
+<li>substr（n,,m)  从索引n开始截取到m处（不包括m），并返回被截取的字符 不改变原数组</li>
+</ol>
+<ul>
+<li>substring（n,m）从索引n开始截取到m处（包括m）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">substring支持负数，当m值为负数的时候，m就值得是length+的index</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>转换大小写<ul>
+<li>str.toUpperCase() 所有的小写转换为大写</li>
+<li>str.toLowerCase() 所有的大写转为小写</li>
+</ul>
+</li>
+<li>将字符串转为数组 split(“分隔符”)<br><code>分隔符-》逗号</code><br>如果分隔符不存在，吧在整体作为数组的一项返回</li>
+<li><p>字符串替换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">replace（n,m) 用新的替换旧的</div></pre></td></tr></table></figure>
+</li>
+<li><p>捕获</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">macth(字符)</div></pre></td></tr></table></figure>
+<p>返回字符的详细信息[字符，索引，原字符串]</p>
+</li>
+<li><p>通过字符找索引，找不到返回-1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">search(字符)</div></pre></td></tr></table></figure>
+</li>
+<li><p>trim 去除字符串首尾的空格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">trimLeft()</div><div class="line">trimRight()</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="Math方法"><a href="#Math方法" class="headerlink" title="Math方法"></a>Math方法</h4><ol>
+<li>Math.max 取最大值</li>
+<li>Math.min 取最小值</li>
+<li>Math.floor 向下取整</li>
+<li>Math.ceil 向上取整</li>
+<li>Math.abs 取绝对值，正数</li>
+<li>Math.round 四舍五入</li>
+<li>Math.pow(n,m) n的m次方</li>
+<li>Math.sqrt(n) 将n开平方</li>
+<li>Math.random() 去0到1之间的随机数</li>
+<li>取n到m之间的随机整数<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Math.round(Math.random()*(m-n)+n;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="数组中的方法研究的时候主要看1-参数、2-返回值、3-改变或者不改变原数组"><a href="#数组中的方法研究的时候主要看1-参数、2-返回值、3-改变或者不改变原数组" class="headerlink" title="数组中的方法研究的时候主要看1.参数、2.返回值、3.改变或者不改变原数组"></a>数组中的方法<code>研究的时候主要看1.参数、2.返回值、3.改变或者不改变原数组</code></h4><ol>
+<li>增加、修改、删除<ol>
+<li>push() 向末尾增加内容<ul>
+<li>向末尾增加的数，可为多个</li>
+<li>新增的后的length</li>
+<li>改变</li>
+</ul>
+</li>
+<li>pop() 删除末尾项<ul>
+<li>无</li>
+<li>被删除项</li>
+<li>改变</li>
+</ul>
+</li>
+<li>shift()删除数组中的第一项<ul>
+<li>无</li>
+<li>被删除项</li>
+<li>改变</li>
+</ul>
+</li>
+<li>unshift() 想数组开头加一项<ul>
+<li>增加项；</li>
+<li>新增后的length</li>
+<li>改变</li>
+</ul>
+</li>
+<li>splice(n,m,x) 从索引n开始删除m个元素，并用x代替<ul>
+<li>把删除的内容以一个新的数组返回</li>
+<li>改变原数组</li>
+<li>splice(n,m)</li>
+<li>splice(n)</li>
+<li>splice(0) 可以用于6克隆数组</li>
+<li>splice(n,0,m) 课用于向数组中增加项</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>数组的截取和拼接</p>
+<ol>
+<li>slice(n，m)<ul>
+<li>从数组的索引n开始截取到索引m处(不包括m)</li>
+<li>返回值为：被找到的部分组成的新数组</li>
+<li>不改变元原来的数组</li>
+<li>slice(n,m)</li>
+<li>slice(n)</li>
+<li>slice(0)/slice()</li>
+<li>当n或m的值是负数的时候，n=ary.length+n/m；</li>
+<li>当n&gt;m时，返回空数组</li>
+</ul>
+</li>
+<li>concat() 把两个数组拼接到一起，原来的数组不变<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ary1.concat(ary2)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>把数组转换为字符串</p>
+<ol>
+<li>toString()；<ul>
+<li>数组</li>
+<li>返回值为转化后的字符串</li>
+<li>不改变</li>
+</ul>
+</li>
+<li>join(“分隔符”) 把数组中的每一项用分隔符拼接成一个字符串<ul>
+<li>分隔符，如”+”</li>
+<li>拼接后的的字符串</li>
+<li>不改变<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">eval：js中把字符串转换为表达式的一个方法</div><div class="line">eval(&quot;10+20+30&quot;)---&gt;60</div><div class="line">把数组中的每一项进项相加求和</div><div class="line">eval(ary.join(&quot;+&quot;));</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>数组的排序和排列</p>
+<ol>
+<li>reverse() 把数组倒过来排序<ul>
+<li>数组</li>
+<li>转换后的数组</li>
+<li>改变原数组</li>
+</ul>
+</li>
+<li>sort() 给数组进行排序–》只能处理10以内的数字进行排序，因为他是按照UNTCODE编码进行排列的<ul>
+<li>数组</li>
+<li>排列后的数组</li>
+<li>改变<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ary.sort(function(a,b))&#123;return a-b);&#125;;</div><div class="line">由小到大排列</div><div class="line">b-a为由大到小排列</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>只有在标准浏览器中兼容的方法，在ie6-8不兼</p>
+<ol>
+<li>indexOf/lastIndexOf<br>字符串中也有这两个方法；<br>–》当前内容在数组中第一次/最后一次出现位置的索引，如果数组中没有这一项，返回的结果是-1，如果有这一项，索引是几就返回几，原来的数组不变</li>
+<li>forEach/map 都是用来遍历数组中的每一项的–》具体看黑皮笔记本</li>
+</ol>
+</li>
+<li>更多的数组方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.dir(Array.prototype);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h4><ol>
+<li>new Date()<br>获取当前自己电脑的时间；不能作为重要用途；例如淘宝秒杀等</li>
+<li>get Date<ol>
+<li>time.getMonth()+1<br>获取的是0-11月；0代表的即是我们所谓的一月</li>
+<li>time.getDate() 获取日期</li>
+<li>time.Day()   星期 ， 0~6</li>
+<li>time.Hours()  小时</li>
+<li>time.Minutes()    分钟</li>
+<li>time.Seconds()    秒</li>
+<li>time.Milliseconds() 毫秒</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/字符串的方法/" rel="tag"># 字符串的方法</a>
+          
+            <a href="/tags/Math方法/" rel="tag"># Math方法</a>
+          
+            <a href="/tags/数组/" rel="tag"># 数组</a>
+          
+            <a href="/tags/Date/" rel="tag"># Date</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/19/保留字/" rel="next" title="保留字">
+                <i class="fa fa-chevron-left"></i> 保留字
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/19/background/" rel="prev" title="background">
+                background <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="王羽彪" />
+          <p class="site-author-name" itemprop="name">王羽彪</p>
+           
+              <p class="site-description motion-element" itemprop="description">技术 | javascript | html | 前端学习</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据类型"><span class="nav-number">1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用的输出和输入方式"><span class="nav-number">2.</span> <span class="nav-text">常用的输出和输入方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串的方法"><span class="nav-number">3.</span> <span class="nav-text">字符串的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Math方法"><span class="nav-number">4.</span> <span class="nav-text">Math方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组中的方法研究的时候主要看1-参数、2-返回值、3-改变或者不改变原数组"><span class="nav-number">5.</span> <span class="nav-text">数组中的方法研究的时候主要看1.参数、2.返回值、3.改变或者不改变原数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Date"><span class="nav-number">6.</span> <span class="nav-text">Date</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王羽彪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,763 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="express是后台框架
+帮我们解决了手动搭建服务,处理复杂的逻辑
+express 是一个函数,执行后返回的是一个监听函数
+get 要求路径必须绝对匹配到,use匹配开头即可
+
+12npm init -ynpm install express --save
+postman 服务端APIs模拟请求工具12请求API命令行$ curl -X POST http://localhost:8080/hom">
+<meta property="og:type" content="article">
+<meta property="og:title" content="'express'">
+<meta property="og:url" content="http://yoursite.com/2017/05/13/express/index.html">
+<meta property="og:site_name" content="王羽彪 |  学习前端">
+<meta property="og:description" content="express是后台框架
+帮我们解决了手动搭建服务,处理复杂的逻辑
+express 是一个函数,执行后返回的是一个监听函数
+get 要求路径必须绝对匹配到,use匹配开头即可
+
+12npm init -ynpm install express --save
+postman 服务端APIs模拟请求工具12请求API命令行$ curl -X POST http://localhost:8080/hom">
+<meta property="og:updated_time" content="2017-05-14T02:03:22.656Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="'express'">
+<meta name="twitter:description" content="express是后台框架
+帮我们解决了手动搭建服务,处理复杂的逻辑
+express 是一个函数,执行后返回的是一个监听函数
+get 要求路径必须绝对匹配到,use匹配开头即可
+
+12npm init -ynpm install express --save
+postman 服务端APIs模拟请求工具12请求API命令行$ curl -X POST http://localhost:8080/hom">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/13/express/"/>
+
+
+
+
+
+  <title>'express' | 王羽彪 |  学习前端</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">王羽彪 |  学习前端</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/13/express/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王羽彪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王羽彪 |  学习前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">'express'</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-13T09:37:54+08:00">
+                2017-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="express是后台框架"><a href="#express是后台框架" class="headerlink" title="express是后台框架"></a>express是后台框架</h2><ul>
+<li>帮我们解决了手动搭建服务,处理复杂的逻辑</li>
+<li>express 是一个函数,执行后返回的是一个监听函数</li>
+<li>get 要求路径必须绝对匹配到,use匹配开头即可</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm init -y</div><div class="line">npm install express --save</div></pre></td></tr></table></figure>
+<p><a href="https://www.getpostman.com/" target="_blank" rel="external">postman 服务端APIs模拟请求工具</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">请求API命令行</div><div class="line">$ curl -X POST http://localhost:8080/home</div></pre></td></tr></table></figure></p>
+<h2 id="express-提供的属性"><a href="#express-提供的属性" class="headerlink" title="express 提供的属性"></a>express 提供的属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">req.path</div><div class="line">req.query</div><div class="line">req.method</div><div class="line">req.headers</div></pre></td></tr></table></figure>
+<h2 id="路径参数params"><a href="#路径参数params" class="headerlink" title="路径参数params"></a>路径参数params</h2><ul>
+<li>:id 表示站位必须要有<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.get(&apos;/article/:id&apos;,callback)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="listen"><a href="#listen" class="headerlink" title="listen"></a>listen</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">app.listen(3000);//可以直接使用app监听端口号,如果没有找到对应的逻辑 会出现cannot [request.method]/[pathname]</div><div class="line"></div><div class="line">/*app.listen=function () &#123;</div><div class="line">  let server = require(&apos;http&apos;).createServer(this);</div><div class="line">  server.listen(...arguments);</div><div class="line">&#125;;*/</div></pre></td></tr></table></figure>
+<h2 id="all"><a href="#all" class="headerlink" title="all"></a>all</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// all 代表所有匹配的方法,*代表所有路径都可以匹配到,一般用来配置404页面,放到所有路由最下面,否则会被截断</div><div class="line">app.all(&apos;/*&apos;,function (req,res) &#123;</div><div class="line">   res.end(&apos;404&apos;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="use-叫中间件-路由"><a href="#use-叫中间件-路由" class="headerlink" title="use 叫中间件 , 路由"></a>use 叫中间件 , 路由</h2><h2 id="use-叫中间件-路由-1"><a href="#use-叫中间件-路由-1" class="headerlink" title="use 叫中间件 , 路由"></a>use 叫中间件 , 路由</h2><ul>
+<li><blockquote>
+<p>默认不写路径热呢请求都能进行匹配</p>
+</blockquote>
+</li>
+<li>中间件在路由最上面执行,先执行中间件 ，再执行路由</li>
+</ul>
+<ol>
+<li>可以写路径,还可以不写路径,不写路径默认是/</li>
+<li>可以拓展属性和方法 类似于 req.path req.query</li>
+<li>可以决定是否向下执行next,若果调用next则可以向下执行 </li>
+<li><blockquote>
+<p>做权限判断</p>
+</blockquote>
+</li>
+<li>从中间件道路有的过程reg和res是同一个,而且中间件可以写多个<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">app.use((req,res,next)=&gt;&#123;</div><div class="line">    //next 是一个函数,如果调用则据需执行</div><div class="line">    console.log(&apos;hello&apos;);</div><div class="line">    res.end(&apos;66666&apos;);   //如果调用end代码不会继续执行</div><div class="line">    next(); //如果要使用use扩展属性或者方法,一定调用next</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="send"><a href="#send" class="headerlink" title="send()"></a>send()</h2><ol>
+<li>可以自动发送json</li>
+<li>可以自动处理编码类型</li>
+<li>数字会转化成状态文本</li>
+</ol>
+<blockquote>
+<p>用send取代end</p>
+</blockquote>
+<h2 id="express-提供了静态服务中间件"><a href="#express-提供了静态服务中间件" class="headerlink" title="express 提供了静态服务中间件"></a>express 提供了静态服务中间件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.use(express.static(&apos;public&apos;));  //静态文件中间件可以配置多个</div></pre></td></tr></table></figure>
+<h2 id="sendFile"><a href="#sendFile" class="headerlink" title="sendFile"></a>sendFile</h2><ul>
+<li>向客户端返回单一页面<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">res.sendFile(path.resolve(&apos;./index.html&apos;));</div><div class="line">res.sendFile(&apos;./index.html&apos;,&#123;root:__dirname&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="静态服务中间件"><a href="#静态服务中间件" class="headerlink" title="静态服务中间件"></a>静态服务中间件</h2><p><code>app.use(express.static(路径))</code></p>
+<h2 id="动态渲染ejs"><a href="#动态渲染ejs" class="headerlink" title="动态渲染ejs"></a>动态渲染ejs</h2><ul>
+<li><p>ejs -&gt;基于html,可以渲染动态数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install ejs --save</div></pre></td></tr></table></figure>
+</li>
+<li><p>jade </p>
+</li>
+</ul>
+<h2 id="ejs-–-gt-后端渲染"><a href="#ejs-–-gt-后端渲染" class="headerlink" title="ejs –&gt; 后端渲染``"></a>ejs –&gt; 后端渲染``</h2><ul>
+<li><code>&lt;%js代码%&gt;</code></li>
+<li><code>&lt;%=渲染的数据%&gt;</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> app.set(<span class="string">'views'</span>,<span class="string">'view'</span>); <span class="comment">//默认为views文件,需要手动更改</span></div><div class="line">app.set(<span class="string">'view engine'</span>,<span class="string">'html'</span>);  <span class="comment">//更改渲染的引擎,默认为ejs</span></div><div class="line">app.engine(<span class="string">'html'</span>,<span class="built_in">require</span>(<span class="string">'ejs'</span>).__express); <span class="comment">//对设置后的引擎</span></div><div class="line">app.get(<span class="string">'/'</span>,(req,res)=&gt;&#123;</div><div class="line">   res.render(<span class="string">'index.html'</span>,  <span class="comment">//会默认去views查找</span></div><div class="line">       <span class="comment">//param1:要渲染的模板</span></div><div class="line">       <span class="comment">// 渲染时采用什么数据</span></div><div class="line">       &#123;</div><div class="line">           <span class="attr">data</span>:<span class="string">'666666!'</span>,</div><div class="line">           <span class="attr">arr</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line">       &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="body-parser-第三方form数据解析插件"><a href="#body-parser-第三方form数据解析插件" class="headerlink" title="body-parser 第三方form数据解析插件"></a>body-parser 第三方form数据解析插件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$npm install body-parser --save</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/10/vue-webpack/" rel="next" title="'vue-webpack'">
+                <i class="fa fa-chevron-left"></i> 'vue-webpack'
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/13/express总结/" rel="prev" title="'express总结'">
+                'express总结' <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="王羽彪" />
+          <p class="site-author-name" itemprop="name">王羽彪</p>
+           
+              <p class="site-description motion-element" itemprop="description">技术 | javascript | html | 前端学习</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#express是后台框架"><span class="nav-number">1.</span> <span class="nav-text">express是后台框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express-提供的属性"><span class="nav-number">2.</span> <span class="nav-text">express 提供的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路径参数params"><span class="nav-number">3.</span> <span class="nav-text">路径参数params</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#listen"><span class="nav-number">4.</span> <span class="nav-text">listen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#all"><span class="nav-number">5.</span> <span class="nav-text">all</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#use-叫中间件-路由"><span class="nav-number">6.</span> <span class="nav-text">use 叫中间件 , 路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#use-叫中间件-路由-1"><span class="nav-number">7.</span> <span class="nav-text">use 叫中间件 , 路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#send"><span class="nav-number">8.</span> <span class="nav-text">send()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express-提供了静态服务中间件"><span class="nav-number">9.</span> <span class="nav-text">express 提供了静态服务中间件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sendFile"><span class="nav-number">10.</span> <span class="nav-text">sendFile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态服务中间件"><span class="nav-number">11.</span> <span class="nav-text">静态服务中间件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态渲染ejs"><span class="nav-number">12.</span> <span class="nav-text">动态渲染ejs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ejs-–-gt-后端渲染"><span class="nav-number">13.</span> <span class="nav-text">ejs –> 后端渲染``</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#body-parser-第三方form数据解析插件"><span class="nav-number">14.</span> <span class="nav-text">body-parser 第三方form数据解析插件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王羽彪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
